@@ -186,9 +186,19 @@ a.bg-ink:active {
   animation: searchFadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
+.description-text {
+  font-family: var(--font-sans);
+  font-size: 0.82rem;
+  line-height: 1.4;
+  color: rgba(18, 18, 18, 0.72);
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  margin-bottom: 0.3rem;
+}
+
 @media (max-width: 767px) {
-  .group h4 {
-    font-size: 0.8rem;
-    line-height: 1;
+  .description-text {
+    font-size: 0.78rem;
+    line-height: 1.25;
   }
 }
