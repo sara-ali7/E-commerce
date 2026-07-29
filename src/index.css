@@ -53,7 +53,9 @@ main {
 
 /* Card Hover Animations & Shadows */
 .group {
-  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  transition:
+    transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1);
   border-radius: 4px;
   padding: 8px;
   background-color: transparent;
@@ -67,7 +69,9 @@ main {
 
 /* Modern Image Scaling */
 .group img {
-  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), filter 0.8s ease !important;
+  transition:
+    transform 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+    filter 0.8s ease !important;
 }
 
 .group:hover img {
@@ -104,7 +108,7 @@ nav a:hover::after {
 }
 
 /* Premium Button Interactions */
-button, 
+button,
 .bg-ink,
 a.bg-ink {
   transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
@@ -182,3 +186,9 @@ a.bg-ink:active {
   animation: searchFadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
+@media (max-width: 767px) {
+  .group h4 {
+    font-size: 0.9rem;
+    line-height: 1.35;
+  }
+}
