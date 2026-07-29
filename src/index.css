@@ -1,0 +1,184 @@
+@import "tailwindcss";
+
+@theme {
+  --color-cream: #f6f3eb;
+  --color-ink: #121212;
+  --color-gold: #d4af37;
+  --font-serif: "Playfair Display", serif;
+  --font-sans: "Inter", sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-cream);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+  transition: background-color 0.5s ease;
+}
+
+/* Premium Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-cream);
+}
+::-webkit-scrollbar-thumb {
+  background: #c5a880;
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-ink);
+}
+
+/* Fade In Animations for Content */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+main {
+  animation: fadeInUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* Card Hover Animations & Shadows */
+.group {
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  border-radius: 4px;
+  padding: 8px;
+  background-color: transparent;
+}
+
+.group:hover {
+  transform: translateY(-8px);
+  background-color: rgba(26, 26, 26, 0.02);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.03);
+}
+
+/* Modern Image Scaling */
+.group img {
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), filter 0.8s ease !important;
+}
+
+.group:hover img {
+  transform: scale(1.05);
+  filter: saturate(1.05) contrast(1.02);
+}
+
+/* Navigation Links Animated Underlines */
+nav a {
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+nav a::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 1.5px;
+  bottom: -4px;
+  left: 0;
+  background-color: var(--color-gold);
+  transform-origin: bottom right;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+nav a:hover {
+  color: var(--color-ink);
+}
+
+nav a:hover::after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+
+/* Premium Button Interactions */
+button, 
+.bg-ink,
+a.bg-ink {
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(18, 18, 18, 0.08);
+}
+
+button:hover {
+  transform: translateY(-2px);
+  letter-spacing: 0.12em;
+  box-shadow: 0 12px 24px rgba(18, 18, 18, 0.15);
+  background-color: #222222 !important;
+  color: var(--color-cream) !important;
+}
+
+button:active,
+.bg-ink:active,
+a.bg-ink:active {
+  transform: translateY(1px);
+  box-shadow: 0 2px 6px rgba(18, 18, 18, 0.1);
+}
+
+/* Underline button style on category cards */
+.group button {
+  position: relative;
+  border-bottom: 1px solid var(--color-ink);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.group button::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 1px;
+  bottom: -1px;
+  left: 0;
+  background-color: var(--color-gold);
+  transform-origin: bottom right;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.group:hover button {
+  color: var(--color-gold);
+  border-color: transparent;
+}
+
+.group:hover button::after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+
+/* Detail view sizing button transitions */
+.px-4.py-2.text-sm.border {
+  border-radius: 2px;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Search Modal Animation */
+@keyframes searchFadeIn {
+  from {
+    opacity: 0;
+    backdrop-filter: blur(0px);
+    background-color: rgba(246, 243, 235, 0);
+  }
+  to {
+    opacity: 1;
+    backdrop-filter: blur(16px);
+    background-color: rgba(246, 243, 235, 0.96);
+  }
+}
+
+.search-overlay {
+  animation: searchFadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
