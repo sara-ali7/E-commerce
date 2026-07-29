@@ -1,38 +1,31 @@
 import { Link } from "react-router-dom";
 import { useCart } from "../context/CartContext";
 
-function AccessoriesCard({ accessories, product, item }) {
-  const data = accessories ?? product ?? item;
+function AccessoriesCard({ accessories }) {
+  const { addToCart } = useCart();
 
-  let addToCart = () => {};
-  try {
-    ({ addToCart } = useCart());
-  } catch {
-    addToCart = () => {};
-  }
-
-  if (!data) return null;
-
-  const price = Number(data.price || 0);
+  if (!accessories) return null;
 
   return (
     <div className="group">
-      <Link to={`/product/${data.id}`}>
+      <Link to={`/accessories/${accessories.id}`}>
         <div className="aspect-[3/4] overflow-hidden bg-ink/5 mb-4">
           <img
-            src={data.image}
-            alt={data.name}
+            src={accessories.image}
+            alt={accessories.name}
             className="w-full h-full object-cover group-hover:scale-105 transition duration-500"
           />
         </div>
-        <h3 className="font-serif text-lg">{data.name}</h3>
-        <h4 className="font-serif text-lg">{data.description}</h4>
-        <h4 className="font-serif text-lg">{data.size}</h4>
-        <p className="text-ink/70 text-sm mb-3">${price.toFixed(2)}</p>
+        <h3 className="font-serif text-lg">{accessories.name}</h3>
+        <p className="description-text">{accessories.description}</p>
+        <p className="description-text">{accessories.size}</p>
+        <p className="text-ink/70 text-sm mb-3">
+          ${Number(accessories.price || 0).toFixed(2)}
+        </p>
       </Link>
 
       <button
-        onClick={() => addToCart(data)}
+        onClick={() => addToCart(accessories)}
         className="text-xs tracking-widest uppercase border-b border-ink pb-1 hover:text-gold hover:border-gold transition"
       >
         Add to cart
