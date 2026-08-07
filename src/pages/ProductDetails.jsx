@@ -72,7 +72,7 @@ function ProductDetails() {
 
         <button
           onClick={handleAddToCart}
-          className="bg-ink text-cream px-8 py-4 text-sm tracking-widest uppercase hover:bg-ink/90 transition"
+          className="bg-ink text-cream px-8 py-4 text-sm tracking-widest uppercase transition"
         >
           Add to cart
         </button>

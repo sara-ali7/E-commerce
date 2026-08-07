@@ -125,6 +125,13 @@ button:hover {
   color: var(--color-cream) !important;
 }
 
+.group button:hover {
+  background-color: transparent !important;
+  color: var(--color-gold) !important;
+  box-shadow: none;
+  transform: none;
+}
+
 button:active,
 .bg-ink:active,
 a.bg-ink:active {

@@ -56,8 +56,8 @@ function Navbar() {
 
           <Link to="/cart" className="relative" aria-label="Cart">
             <svg
-              width="20"
-              height="20"
+              width="22"
+              height="22"
               fill="none"
               stroke="currentColor"
               strokeWidth="1.5"
