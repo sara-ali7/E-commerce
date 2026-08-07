@@ -3,12 +3,15 @@ import { useNavigate } from "react-router-dom";
 import { useCart } from "../context/CartContext";
 
 function Checkout() {
-  const { cartItems, clearCart } = useCart();
+  const { cartItems, addQuantity, removeFromCart, clearCart } = useCart();
   const navigate = useNavigate();
   const [form, setForm] = useState({ name: "", email: "", address: "" });
   const [orderPlaced, setOrderPlaced] = useState(false);
 
-  const total = cartItems.reduce((sum, item) => sum + item.price, 0);
+  const total = cartItems.reduce(
+    (sum, item) => sum + item.price * (item.quantity || 1),
+    0,
+  );
 
   const handleChange = (e) =>
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -67,16 +70,39 @@ function Checkout() {
       <h2 className="font-serif text-3xl mb-8">Checkout</h2>
 
       <div className="mb-10">
-        {cartItems.map((item, index) => (
+        {cartItems.map((item) => (
           <div
-            key={index}
-            className="flex justify-between py-2 text-sm border-b border-ink/10"
+            key={`${item.id}-${item.size || ""}`}
+            className="flex items-center justify-between gap-3 py-2 text-sm border-b border-ink/10"
           >
-            <span>
-              {item.name}
-              {item.size ? ` (${item.size})` : ""}
+            <div className="flex-1">
+              <span>
+                {item.name}
+                {item.size ? ` (${item.size})` : ""}
+              </span>
+            </div>
+            <div className="flex items-center gap-2">
+              <button
+                type="button"
+                onClick={() => removeFromCart(item.id, item.size)}
+                className="flex h-6 w-6 items-center justify-center text-lg leading-none text-ink/70 hover:text-ink"
+                aria-label={`Decrease quantity for ${item.name}`}
+              >
+                −
+              </button>
+              <span className="min-w-5 text-center">{item.quantity || 1}</span>
+              <button
+                type="button"
+                onClick={() => addQuantity(item.id, item.size)}
+                className="flex h-6 w-6 items-center justify-center text-lg leading-none text-ink/70 hover:text-ink"
+                aria-label={`Increase quantity for ${item.name}`}
+              >
+                +
+              </button>
+            </div>
+            <span className="text-ink/70 min-w-[70px] text-right">
+              ${(item.price * (item.quantity || 1)).toFixed(2)}
             </span>
-            <span className="text-ink/70">${item.price.toFixed(2)}</span>
           </div>
         ))}
         <div className="flex justify-between pt-4">

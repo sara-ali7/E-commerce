@@ -5,6 +5,10 @@ import { useCart } from "../context/CartContext";
 function Navbar() {
   const { cartItems = [] } = useCart();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const cartCount = cartItems.reduce(
+    (sum, item) => sum + (item.quantity || 1),
+    0,
+  );
 
   const links = [
     { to: "/", label: "Home" },
@@ -67,9 +71,9 @@ function Navbar() {
               <path d="M3 6h18" />
               <path d="M16 10a4 4 0 01-8 0" />
             </svg>
-            {cartItems.length > 0 && (
+            {cartCount > 0 && (
               <span className="absolute -top-2 -right-2 bg-ink text-cream text-xs w-4 h-4 rounded-full flex items-center justify-center">
-                {cartItems.length}
+                {cartCount}
               </span>
             )}
           </Link>

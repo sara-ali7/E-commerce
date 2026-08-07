@@ -4,7 +4,10 @@ import CartItem from "../components/CartItem";
 
 function Cart() {
   const { cartItems } = useCart();
-  const total = cartItems.reduce((sum, item) => sum + item.price, 0);
+  const total = cartItems.reduce(
+    (sum, item) => sum + item.price * (item.quantity || 1),
+    0,
+  );
 
   return (
     <div className="max-w-2xl mx-auto px-6 py-16">
@@ -22,8 +25,8 @@ function Cart() {
         </div>
       ) : (
         <>
-          {cartItems.map((item, index) => (
-            <CartItem key={index} item={item} />
+          {cartItems.map((item) => (
+            <CartItem key={`${item.id}-${item.size || ""}`} item={item} />
           ))}
 
           <div className="flex justify-between items-center mt-8 mb-6">
